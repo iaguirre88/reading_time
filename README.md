@@ -1,6 +1,9 @@
 # ReadingTime
 
-**TODO: Add description**
+Medium's like reading time estimation for Elixir.
+ReadingTime helps you estimate how long a text will take to read.
+
+This based on [reading-time](https://github.com/ngryman/reading-time) for JavaScript.
 
 ## Installation
 
@@ -15,7 +18,5 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/reading_time](https://hexdocs.pm/reading_time).
+The docs can be found at [https://hexdocs.pm/reading_time](https://hexdocs.pm/reading_time).
 
