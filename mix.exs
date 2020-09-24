@@ -5,9 +5,29 @@ defmodule ReadingTime.MixProject do
     [
       app: :reading_time,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
+      description: description(),
+      package: package(),
       deps: deps()
+    ]
+  end
+
+  defp description do
+    """
+    ReadingTime helps you estimate how long some text will take to be read.
+    """
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README.md"],
+      maintainers: ["Ignacio Aguirrezabal"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/iaguirre88/reading_time",
+        "Docs" => "https://hexdocs.pm/reading_time"
+      }
     ]
   end
 
