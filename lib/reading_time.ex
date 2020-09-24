@@ -3,16 +3,29 @@ defmodule ReadingTime do
   Documentation for ReadingTime.
   """
 
+  @split_pattern [" ", "\n", "\r", "\t"]
+  @words_per_minute 200
+
+  @spec time(String.t()) :: number
   @doc """
-  Hello world.
+  Returns the time in minutes for a given string.
 
   ## Examples
 
-      iex> ReadingTime.hello()
-      :world
+      iex> ReadingTime.time("this is a random text")
+      1
 
   """
-  def hello do
-    :world
+  def time(string) do
+    words =
+      string
+      |> String.split(@split_pattern, trim: true)
+      |> length
+
+    minutes =
+      (words / @words_per_minute)
+      |> ceil
+
+    minutes
   end
 end
