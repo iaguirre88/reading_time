@@ -23,8 +23,8 @@ defmodule ReadingTime do
       |> length
 
     minutes =
-      (words / @words_per_minute)
-      |> ceil
+      Float.ceil(words / @words_per_minute)
+      |> trunc
 
     minutes
   end
