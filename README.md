@@ -1,5 +1,9 @@
 # ReadingTime
 
+[![Build Status](https://travis-ci.com/iaguirre88/reading_time.svg?branch=master)](https://travis-ci.com/iaguirre88/reading_time)
+
+---
+
 Medium's like reading time estimation for Elixir.
 ReadingTime helps you estimate how long a text will take to read.
 
