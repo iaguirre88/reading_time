@@ -3,19 +3,21 @@ defmodule ReadingTimeTest do
   use ExUnitProperties
   doctest ReadingTime
 
-  property "the time/2 function grows linearly" do
-    check all(
-            initial_value <-
-              StreamData.scale(StreamData.positive_integer(), fn size -> size * 10 end),
-            multiplier <- StreamData.integer(2..100)
-          ) do
-      text_length = initial_value + 200
-      short_text = String.duplicate("abcd ", text_length)
-      long_text = String.duplicate("abcd ", text_length * multiplier)
+  @split_pattern [" ", "\n", "\r", "\t"]
+  @words_per_minute 200
 
-      assert_in_delta ReadingTime.time(long_text),
-                      ReadingTime.time(short_text) * multiplier,
-                      multiplier
+  property "the time/1 function grows linearly" do
+    check all(
+            short_text_multiplier <- StreamData.integer(1..5),
+            long_text_multiplier <- StreamData.integer(2..100),
+            splitter <- StreamData.member_of(@split_pattern)
+          ) do
+      text_length = @words_per_minute * short_text_multiplier
+
+      short_text = String.duplicate("abcd#{splitter}", text_length)
+      long_text = String.duplicate("abcd#{splitter}", text_length * long_text_multiplier)
+
+      assert ReadingTime.time(long_text) == ReadingTime.time(short_text) * long_text_multiplier
     end
   end
 end
