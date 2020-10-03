@@ -3,7 +3,14 @@ defmodule ReadingTime do
   Documentation for ReadingTime.
   """
 
-  @spec time(String.t()) :: number
+  @split_pattern [" ", "\n", "\r", "\t"]
+  @words_per_minute 200
+
+  @spec time(
+          String.t(),
+          words_per_minute: non_neg_integer(),
+          split_pattern: nonempty_list(String.t())
+        ) :: number
   @doc """
   Returns the time in minutes for a given string.
 
@@ -12,8 +19,14 @@ defmodule ReadingTime do
       iex> ReadingTime.time("this is a random text")
       1
 
+      iex> ReadingTime.time("this_is_a-random-text", words_per_minute: 1, split_pattern: ["_", "-"])
+      5
+
   """
-  def time(string, words_per_minute \\ 200, split_pattern \\ [" ", "\n", "\r", "\t"]) do
+  def time(string, opts \\ []) do
+    words_per_minute = Keyword.get(opts, :words_per_minute, @words_per_minute)
+    split_pattern = Keyword.get(opts, :split_pattern, @split_pattern)
+
     words =
       string
       |> String.split(split_pattern, trim: true)
