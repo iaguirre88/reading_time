@@ -38,5 +38,6 @@ before_script:
   - mix deps.get
 
 script:
+  - mix credo
   - mix test
 
