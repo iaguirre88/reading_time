@@ -13,11 +13,11 @@ defmodule ReadingTime do
     # ingore boxed text
     ~r/>+/,
     # ignore unordered lists
-    ~r/(-)+/,
-    ~r/(\*)+/,
-    ~r/(\+)+/,
+    ~r/-/,
+    ~r/(\*)/,
+    ~r/(\+)/,
     # ignore horizontal rules
-    ~r/----*/,
+    ~r/---+/,
     ~r/\*\*(\*)+/,
     ~r/___+/,
   ]
