@@ -46,4 +46,36 @@ defmodule ReadingTimeTest do
                ) * long_text_multiplier
     end
   end
+
+  property "Markdown formatters get ignored" do
+    text = "
+    # This is a header1.
+
+    ## This is a header2.
+
+    This is also a header1.
+    ==
+
+    This is also a header2.
+    --
+
+    > This is a blockquote
+    >> This is a nested blockquote
+    >> # This is a header1 inside a blockquote
+
+    ---
+
+    - List1
+    + List2
+    * List3
+
+    ***
+
+    ___
+
+    "
+    actual_words = 37
+    assert ReadingTime.time(text, words_per_minute: 1, text_format: :markdown) == actual_words
+  end
+
 end
