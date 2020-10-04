@@ -36,8 +36,8 @@ env:
 
 before_script:
   - mix deps.get
-  - mix credo
 
 script:
+  - mix credo
   - mix test
 
