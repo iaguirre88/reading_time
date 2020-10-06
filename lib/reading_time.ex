@@ -27,6 +27,7 @@ defmodule ReadingTime do
     words_per_minute = Keyword.get(opts, :words_per_minute, @words_per_minute)
     split_pattern = Keyword.get(opts, :split_pattern, @split_pattern)
 
+    # FIXME: test credo
     words =
       string
       |> String.split(split_pattern, trim: true)
